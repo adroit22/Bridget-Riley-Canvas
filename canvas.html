@@ -1,0 +1,42 @@
+<html>
+
+<head>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="myCanvas"></canvas>
+
+	<script>
+		var myCanvas = document.getElementById("myCanvas");
+		var drawingContext = myCanvas.getContext("2d");
+		myCanvas.width = window.innerWidth;
+		myCanvas.height = window.innerHeight;
+		var widthOfStripes = myCanvas.width / 40;
+		for (var x = 0; x <= myCanvas.width; x += widthOfStripes) {
+			for (var y = 0; y <= myCanvas.height + 2 * widthOfStripes; y += widthOfStripes) {
+				var randomColor = "#" + ((1 << 24) * Math.random() | 0).toString(16);
+				drawingContext.beginPath();
+				drawingContext.moveTo(x, y);
+				drawingContext.lineTo(x + widthOfStripes, y - widthOfStripes);
+				drawingContext.lineTo(x + widthOfStripes, y - 2 * widthOfStripes);
+				drawingContext.lineTo(x, y - widthOfStripes);
+				drawingContext.closePath();
+				drawingContext.stroke();
+				drawingContext.strokeStyle = randomColor;
+				drawingContext.fillStyle = randomColor;
+				drawingContext.fill();
+			}
+		}
+	</script>
+
+</body>
+
+</html>
